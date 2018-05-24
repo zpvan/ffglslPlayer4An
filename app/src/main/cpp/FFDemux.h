@@ -7,12 +7,21 @@
 
 #include "IDemux.h"
 
+extern "C" {
+#include "libavutil/rational.h"
+};
+
 struct AVFormatContext;
+
+static double r2d(AVRational r) {
+    return r.num == 0 || r.den == 0 ? (double) 0.f : (double) r.num / (double) r.den;
+}
 
 class FFDemux : public IDemux {
 public:
     //打开文件或者流媒体, rtmp, http, rtsp
     virtual bool Open(const char *url);
+    virtual void Close();
 
     //获取视频参数
     virtual XParameter GetVPara();
@@ -30,6 +39,7 @@ private:
     AVFormatContext *av_fmt_ctx;
     int audioStream;
     int videoStream;
+    std::mutex ff_dmx_mutex;
 };
 
 

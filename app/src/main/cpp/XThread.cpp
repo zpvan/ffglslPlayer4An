@@ -14,10 +14,12 @@ void XSleep(int ms) {
 }
 
 //启动线程
-void XThread::Start() {
+bool XThread::Start() {
     isExit = false;
     thread th(&XThread::ThreadMain, this);
     th.detach();
+
+    return true;
 }
 
 void XThread::ThreadMain() {

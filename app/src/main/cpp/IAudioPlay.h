@@ -20,8 +20,14 @@ public:
     //获取缓冲数据, 如没有则阻塞
     virtual XData GetData();
 
+    virtual void Close() = 0;
+
+    virtual void Clear();
+
     //最大的队列缓冲
     int maxFrame = 100;
+
+    int pts = 0;
 
 protected:
     std::list<XData> frames;

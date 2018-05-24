@@ -16,6 +16,8 @@ public:
     virtual void Render(XData data) = 0;
 
     virtual void Update(XData data);
+
+    virtual void Close() = 0;
 };
 
 
