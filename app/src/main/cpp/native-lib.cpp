@@ -19,6 +19,8 @@ extern "C" {
 #include "libavcodec/jni.h"
 }
 
+static const char *MEDIA_FILE = "/mnt/sdcard/Download/valor-01-01.mp4";
+
 class TextObs : public IObserver {
 public:
     void Update(XData data) {
@@ -44,7 +46,7 @@ Java_com_knox_xplay_MainActivity_stringFromJNI(
     std::string hello = "Hello from C++";
 
     IDemux *dmx = new FFDemux();
-    dmx->Open("/mnt/sdcard/Download/mm/Jingju_108.mov");
+    dmx->Open(MEDIA_FILE);
     //for (;;) {
     //    XData xData = dmx->Read();
     //    XLOGD("read packet, size: %d", xData.size);
@@ -86,7 +88,7 @@ Java_com_knox_xplay_XPlay_native_1initView(JNIEnv *env, jobject instance, jobjec
 
 
     IDemux *dmx = new FFDemux();
-    dmx->Open("/mnt/sdcard/Download/mm/Jingju_108.mov");
+    dmx->Open(MEDIA_FILE);
 
     IDecode *vdec = new FFDecode();
     vdec->Open(dmx->GetVPara(), true);
