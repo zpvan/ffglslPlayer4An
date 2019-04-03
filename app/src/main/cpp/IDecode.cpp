@@ -29,6 +29,16 @@ void IDecode::Main() {
     XLOGD("idec-thread");
     while (!isExit) {
         packetMutex.lock();
+
+        //判断音视频同步
+        if (!isAudio && syncPts > 0) {
+            if (syncPts < pts) {
+                packetMutex.unlock();
+                XSleep(1);
+                continue;
+            }
+        }
+
         if (pkts.empty()) {
             packetMutex.unlock();
             XSleep(1);
@@ -46,6 +56,7 @@ void IDecode::Main() {
                 XData frame = RecvFrame();
                 if (!frame.data)
                     break;
+                pts = frame.pts;
                 //XLOGD("decoded frame size: %d", frame.size);
                 //发送数据给观察者
                 this->Notify(frame);
@@ -54,4 +65,15 @@ void IDecode::Main() {
         packet.Drop();
         packetMutex.unlock();
     }
+}
+
+void IDecode::Clear() {
+    packetMutex.lock();
+    while (!pkts.empty()) {
+        pkts.front().Drop();
+        pkts.pop_front();
+    }
+    pts = 0;
+    syncPts = 0;
+    packetMutex.unlock();
 }

@@ -13,7 +13,10 @@ struct AVFrame;
 
 class FFDecode : public IDecode {
 public:
+    static void InitHard(void *vm);
+
     virtual bool Open(XParameter para, bool isHard = false);
+    virtual void Close();
 
     FFDecode();
 
@@ -26,6 +29,7 @@ public:
 private:
     AVCodecContext *av_cdc_ctx;
     AVFrame *frame;
+    std::mutex mux;
 };
 
 

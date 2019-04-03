@@ -12,6 +12,7 @@ static SLEngineItf engineItf = NULL;
 static SLAndroidSimpleBufferQueueItf pcmQueue = NULL;
 static SLObjectItf audioPlayer = NULL;
 static SLPlayItf audioPlayerItf = NULL;
+static SLObjectItf outputMixObject = NULL;
 
 static SLresult createSLEngine(SLObjectItf *p_engineObject, SLEngineItf *p_engineEngine) {
     SLObjectItf engineObject = *p_engineObject;
@@ -123,26 +124,61 @@ void SLAudioPlay::PlayCall(void *bufq) {
         return;
     }
     memcpy(buf, d.data, (size_t) d.size);
+    sl_mux.lock();
     (*bf)->Enqueue(bf, buf, (size_t) d.size);
     d.Drop();
+    sl_mux.unlock();
+}
+
+void SLAudioPlay::Close() {
+
+    IAudioPlay::Clear();
+
+    sl_mux.lock();
+    // 停止播放
+    if (audioPlayerItf && (*audioPlayerItf)) {
+        (*audioPlayerItf)->SetPlayState(audioPlayerItf, SL_PLAYSTATE_STOPPED);
+    }
+    // 清理播放队列
+    if (pcmQueue && (*pcmQueue)) {
+        (*pcmQueue)->Clear(pcmQueue);
+    }
+    // 销毁队列
+    if (audioPlayer && (*audioPlayer)) {
+        (*audioPlayer)->Destroy(audioPlayer);
+    }
+    // 销毁混音器
+    if (outputMixObject && (*outputMixObject)) {
+        (*outputMixObject)->Destroy(outputMixObject);
+    }
+    // 销毁播放引擎
+    if (engineObject && (*engineObject)) {
+        (*engineObject)->Destroy(engineObject);
+    }
+    sl_mux.unlock();
 }
 
 bool SLAudioPlay::StartPlay(XParameter out) {
 
+    Close();
+
+    sl_mux.lock();
     // 1
     SLresult slresult = 0;
     slresult = createSLEngine(&engineObject, &engineItf);
     if (slresult != SL_RESULT_SUCCESS) {
         XLOGE("createSL failed");
+        sl_mux.unlock();
         return false;
     }
     XLOGD("createSL success");
 
     // 2
-    SLObjectItf outputMixObject = NULL;//
+    //
     slresult = createSLMix(&outputMixObject, engineItf);
     if (slresult != SL_RESULT_SUCCESS) {
         XLOGE("createMix failed");
+        sl_mux.unlock();
         return false;
     }
     XLOGD("createMix success");
@@ -170,6 +206,7 @@ bool SLAudioPlay::StartPlay(XParameter out) {
                               &audioPlayerItf);
     if (slresult != SL_RESULT_SUCCESS) {
         XLOGE("createAudioPlayer failed");
+        sl_mux.unlock();
         return false;
     }
     XLOGD("createAudioPlayer success %p %p", audioPlayer, audioPlayerItf);
@@ -178,6 +215,7 @@ bool SLAudioPlay::StartPlay(XParameter out) {
     slresult = (*audioPlayer)->GetInterface(audioPlayer, SL_IID_BUFFERQUEUE, &pcmQueue);
     if (slresult != SL_RESULT_SUCCESS) {
         XLOGE("create pcm queue failed");
+        sl_mux.unlock();
         return false;
     }
     XLOGD("create pcm queue success %p", pcmQueue);
@@ -192,5 +230,6 @@ bool SLAudioPlay::StartPlay(XParameter out) {
     (*pcmQueue)->Enqueue(pcmQueue, "", 1);
 
     XLOGD("SLAudioPlay::StartPlay success");
+    sl_mux.unlock();
     return true;
 }

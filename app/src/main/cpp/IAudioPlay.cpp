@@ -23,6 +23,15 @@ void IAudioPlay::Update(XData data) {
     }
 }
 
+void IAudioPlay::Clear() {
+    framesMutex.lock();
+    while (!frames.empty()) {
+        frames.front().Drop();
+        frames.pop_front();
+    }
+    framesMutex.unlock();
+}
+
 XData IAudioPlay::GetData() {
     XData d;
     while (!isExit) {
@@ -31,10 +40,12 @@ XData IAudioPlay::GetData() {
             d = frames.front();
             frames.pop_front();
             framesMutex.unlock();
+            pts = d.pts;
             return d;
         }
         framesMutex.unlock();
         XSleep(1);
     }
+
     return d;
 }
