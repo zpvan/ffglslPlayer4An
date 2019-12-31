@@ -1,0 +1,69 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An",
+      "sdkFolder": "/Users/knox/Library/Android/sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/build/intermediates",
+      "gradleModulePathName": ":app",
+      "moduleRootFolder": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app",
+      "makeFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/.cxx",
+      "cxxFolder": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx",
+      "ndkFolder": "/Users/knox/Library/Android/sdk/ndk-bundle",
+      "ndkVersion": "17.1.4828580",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [
+      "-std\u003dc++11"
+    ],
+    "variantName": "debug",
+    "soFolder": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/build/intermediates/cmake/debug/lib",
+    "objFolder": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/build/intermediates/cmake/debug/obj",
+    "jsonFolder": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cmake/debug",
+    "gradleBuildOutputFolder": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cxx/debug",
+    "isDebuggableEnabled": true,
+    "validAbiList": [
+      "ARMEABI_V7A"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARMEABI_V7A",
+  "abiPlatformVersion": 21,
+  "cxxBuildFolder": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cmake/debug/armeabi-v7a",
+  "jsonFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cmake/debug/armeabi-v7a/android_gradle_build.json",
+  "gradleBuildOutputFolder": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cxx/debug/armeabi-v7a",
+  "objFolder": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/build/intermediates/cmake/debug/obj/armeabi-v7a",
+  "buildCommandFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cmake/debug/armeabi-v7a/build_command.txt",
+  "buildOutputFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cmake/debug/armeabi-v7a/build_output.txt",
+  "modelOutputFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cmake/debug/armeabi-v7a/build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cxx/debug/armeabi-v7a/CMakeLists.txt",
+    "toolchainWrapperFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cxx/debug/armeabi-v7a/android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cxx/debug/armeabi-v7a/build_generation_state.json",
+    "cacheKeyFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cxx/debug/armeabi-v7a/compiler_cache_key.json",
+    "compilerCacheUseFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cxx/debug/armeabi-v7a/compiler_cache_use.json",
+    "compilerCacheWriteFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cxx/debug/armeabi-v7a/compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cxx/debug/armeabi-v7a/compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cmake/debug/armeabi-v7a/json_generation_record.json",
+  "compileCommandsJsonFile": "/Users/knox/Documents/code/AnApp/ffglslPlayer4An/app/.cxx/cmake/debug/armeabi-v7a/compile_commands.json"
+}

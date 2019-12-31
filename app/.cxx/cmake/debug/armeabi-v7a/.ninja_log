@@ -1,0 +1,25 @@
+# ninja log v5
+5	185	0	CMakeFiles/native-lib.dir/src/main/cpp/XParameter.cpp.o	9dd061678c578d8
+2	186	0	CMakeFiles/native-lib.dir/src/main/cpp/XLog.cpp.o	7d4beb77ef6a68f8
+2	375	0	CMakeFiles/native-lib.dir/src/main/cpp/XData.cpp.o	7bba6166f81b419f
+1	646	0	CMakeFiles/native-lib.dir/src/main/cpp/IDemux.cpp.o	43995de11e0d90f5
+186	648	0	CMakeFiles/native-lib.dir/src/main/cpp/IVideoView.cpp.o	97964ffd8921533f
+187	650	0	CMakeFiles/native-lib.dir/src/main/cpp/GLVideoView.cpp.o	17a34a9d99b1532a
+376	664	0	CMakeFiles/native-lib.dir/src/main/cpp/XTexture.cpp.o	5ab7ee6cb9db8af7
+3	697	0	CMakeFiles/native-lib.dir/src/main/cpp/XThread.cpp.o	27d14c20955e892f
+3	779	0	CMakeFiles/native-lib.dir/src/main/cpp/IObserver.cpp.o	c29baeb1d47db495
+4	861	0	CMakeFiles/native-lib.dir/src/main/cpp/IDecode.cpp.o	c0c66e1ae68b6b90
+1	863	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	8c74a4b8cfc71c8f
+1	928	0	CMakeFiles/native-lib.dir/src/main/cpp/FFDemux.cpp.o	b8268cf4d318f42c
+4	966	0	CMakeFiles/native-lib.dir/src/main/cpp/FFDecode.cpp.o	e2622417dc99a4e5
+648	1049	0	CMakeFiles/native-lib.dir/src/main/cpp/XEGL.cpp.o	ddb4cef227decec3
+647	1060	0	CMakeFiles/native-lib.dir/src/main/cpp/XShader.cpp.o	b5dbb024afb71d81
+650	1129	0	CMakeFiles/native-lib.dir/src/main/cpp/IResample.cpp.o	62088e6a7c548f77
+664	1196	0	CMakeFiles/native-lib.dir/src/main/cpp/FFResample.cpp.o	26c06e22d03f4b99
+697	1231	0	CMakeFiles/native-lib.dir/src/main/cpp/IAudioPlay.cpp.o	d2cc7556d6c071fd
+966	1240	0	CMakeFiles/native-lib.dir/src/main/cpp/IPlayerProxy.cpp.o	f0c89e75ea9388fb
+863	1257	0	CMakeFiles/native-lib.dir/src/main/cpp/IPlayerBuilder.cpp.o	a2ab81d78330d6ca
+861	1273	0	CMakeFiles/native-lib.dir/src/main/cpp/IPlayer.cpp.o	bf0399450996bee3
+779	1314	0	CMakeFiles/native-lib.dir/src/main/cpp/SLAudioPlay.cpp.o	2525706c497ef2f7
+928	1332	0	CMakeFiles/native-lib.dir/src/main/cpp/FFPlayerBuilder.cpp.o	95644894c2a5e53a
+1333	1501	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	cec5a5d48a4f1cd3
