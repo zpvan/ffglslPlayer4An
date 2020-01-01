@@ -3,7 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/ffglslPlayer4An.iml" filepath="$PROJECT_DIR$/ffglslPlayer4An.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/playerbaseffglsl.iml" filepath="$PROJECT_DIR$/playerbaseffglsl.iml" />
+>>>>>>> 56baea0ce198f8d63653b3916c95bb6fcfbe69e4
     </modules>
   </component>
 </project>

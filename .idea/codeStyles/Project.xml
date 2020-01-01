@@ -1,6 +1,104 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
+<<<<<<< HEAD
     <codeStyleSettings language="XML">
+=======
+    <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
+    <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
+    <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
+      <value />
+    </option>
+    <option name="IMPORT_LAYOUT_TABLE">
+      <value>
+        <package name="android" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="com" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="junit" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="net" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="org" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="java" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="javax" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="" withSubpackages="true" static="true" />
+        <emptyLine />
+      </value>
+    </option>
+    <option name="RIGHT_MARGIN" value="100" />
+    <AndroidXmlCodeStyleSettings>
+      <option name="USE_CUSTOM_SETTINGS" value="true" />
+    </AndroidXmlCodeStyleSettings>
+    <JavaCodeStyleSettings>
+      <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
+      <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
+      <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
+        <value />
+      </option>
+      <option name="IMPORT_LAYOUT_TABLE">
+        <value>
+          <package name="android" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="com" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="junit" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="net" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="org" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="java" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="javax" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="" withSubpackages="true" static="true" />
+          <emptyLine />
+        </value>
+      </option>
+    </JavaCodeStyleSettings>
+    <Objective-C-extensions>
+      <file>
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Import" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Macro" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Typedef" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Enum" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Constant" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Global" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Struct" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="FunctionPredecl" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Function" />
+      </file>
+      <class>
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Property" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Synthesize" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="InitMethod" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="StaticMethod" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="InstanceMethod" />
+        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="DeallocMethod" />
+      </class>
+      <extensions>
+        <pair source="cpp" header="h" fileNamingConvention="NONE" />
+        <pair source="c" header="h" fileNamingConvention="NONE" />
+      </extensions>
+    </Objective-C-extensions>
+    <XML>
+      <option name="XML_KEEP_LINE_BREAKS" value="false" />
+      <option name="XML_ALIGN_ATTRIBUTES" value="false" />
+      <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="true" />
+    </XML>
+    <codeStyleSettings language="XML">
+      <option name="FORCE_REARRANGE_MODE" value="1" />
+      <indentOptions>
+        <option name="CONTINUATION_INDENT_SIZE" value="4" />
+      </indentOptions>
+>>>>>>> 56baea0ce198f8d63653b3916c95bb6fcfbe69e4
       <arrangement>
         <rules>
           <section>
@@ -8,7 +106,10 @@
               <match>
                 <AND>
                   <NAME>xmlns:android</NAME>
+<<<<<<< HEAD
                   <XML_ATTRIBUTE />
+=======
+>>>>>>> 56baea0ce198f8d63653b3916c95bb6fcfbe69e4
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
@@ -19,7 +120,10 @@
               <match>
                 <AND>
                   <NAME>xmlns:.*</NAME>
+<<<<<<< HEAD
                   <XML_ATTRIBUTE />
+=======
+>>>>>>> 56baea0ce198f8d63653b3916c95bb6fcfbe69e4
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
@@ -31,7 +135,10 @@
               <match>
                 <AND>
                   <NAME>.*:id</NAME>
+<<<<<<< HEAD
                   <XML_ATTRIBUTE />
+=======
+>>>>>>> 56baea0ce198f8d63653b3916c95bb6fcfbe69e4
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
               </match>
@@ -42,7 +149,10 @@
               <match>
                 <AND>
                   <NAME>.*:name</NAME>
+<<<<<<< HEAD
                   <XML_ATTRIBUTE />
+=======
+>>>>>>> 56baea0ce198f8d63653b3916c95bb6fcfbe69e4
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
               </match>
@@ -53,7 +163,10 @@
               <match>
                 <AND>
                   <NAME>name</NAME>
+<<<<<<< HEAD
                   <XML_ATTRIBUTE />
+=======
+>>>>>>> 56baea0ce198f8d63653b3916c95bb6fcfbe69e4
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
@@ -64,7 +177,10 @@
               <match>
                 <AND>
                   <NAME>style</NAME>
+<<<<<<< HEAD
                   <XML_ATTRIBUTE />
+=======
+>>>>>>> 56baea0ce198f8d63653b3916c95bb6fcfbe69e4
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
@@ -75,7 +191,10 @@
               <match>
                 <AND>
                   <NAME>.*</NAME>
+<<<<<<< HEAD
                   <XML_ATTRIBUTE />
+=======
+>>>>>>> 56baea0ce198f8d63653b3916c95bb6fcfbe69e4
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
@@ -86,12 +205,61 @@
             <rule>
               <match>
                 <AND>
+<<<<<<< HEAD
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
               </match>
               <order>ANDROID_ATTRIBUTE_ORDER</order>
+=======
+                  <NAME>.*:layout_width</NAME>
+                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+                </AND>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <NAME>.*:layout_height</NAME>
+                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+                </AND>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <NAME>.*:layout_.*</NAME>
+                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+                </AND>
+              </match>
+              <order>BY_NAME</order>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <NAME>.*:width</NAME>
+                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+                </AND>
+              </match>
+              <order>BY_NAME</order>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <NAME>.*:height</NAME>
+                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+                </AND>
+              </match>
+              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -99,7 +267,22 @@
               <match>
                 <AND>
                   <NAME>.*</NAME>
+                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+                </AND>
+              </match>
+              <order>BY_NAME</order>
+>>>>>>> 56baea0ce198f8d63653b3916c95bb6fcfbe69e4
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <NAME>.*</NAME>
+<<<<<<< HEAD
                   <XML_ATTRIBUTE />
+=======
+>>>>>>> 56baea0ce198f8d63653b3916c95bb6fcfbe69e4
                   <XML_NAMESPACE>.*</XML_NAMESPACE>
                 </AND>
               </match>
