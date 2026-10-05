@@ -1,0 +1,25 @@
+XPlay (ffglslPlayer4An)
+Copyright (c) 2018-2026 zpvan
+
+本项目自有代码采用 MIT License（见 LICENSE）。
+This project's own code is licensed under the MIT License (see LICENSE).
+
+This repository contains prebuilt FFmpeg 3.4.x binaries (app/libs/) and
+headers (app/include/).
+本仓库包含 FFmpeg 3.4.x 预编译二进制（app/libs/）与头文件（app/include/）。
+
+FFmpeg is licensed under the GNU Lesser General Public License (LGPL)
+version 2.1 or later.
+FFmpeg 依据 LGPL 2.1+ 授权（本项目的编译配置未启用 --enable-gpl）。
+
+本项目以动态链接（.so）方式使用 FFmpeg，并在 docs/build-ffmpeg.md 提供对应
+源码版本与完整编译方法，满足 LGPL 对"可替换库"的要求。
+This project links FFmpeg dynamically (.so) and provides the corresponding
+source version and complete build instructions in docs/build-ffmpeg.md,
+satisfying the LGPL "replaceable library" requirement.
+
+FFmpeg source: https://ffmpeg.org/releases/ (ffmpeg-3.4.13)
+LGPL text: https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+
+如果你在作品中再分发这些二进制，需要继续遵守 LGPL 义务。
+If you redistribute these binaries in your work, you must comply with the LGPL.
