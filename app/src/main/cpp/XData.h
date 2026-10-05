@@ -24,7 +24,7 @@ public:
     XDataType dataType = AVPACKET_TYPE;
     //
     int format = 0;
-    int pts = 0;
+    long long pts = 0;
 
     bool Alloc(int size, const char *data = 0);
 

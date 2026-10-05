@@ -27,7 +27,7 @@ public:
     //最大的队列缓冲
     int maxFrame = 100;
 
-    int pts = 0;
+    long long pts = 0;
 
 protected:
     std::list<XData> frames;

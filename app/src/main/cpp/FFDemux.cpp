@@ -25,7 +25,9 @@ bool FFDemux::Open(const char *url) {
 
     res = avformat_find_stream_info(av_fmt_ctx, NULL);
     if (res < 0) {
+        ff_dmx_mutex.unlock();
         XLOGE("parse %s failed", url);
+        return false;
     }
 
     durationMs = av_fmt_ctx->duration / (AV_TIME_BASE / 1000);
@@ -92,6 +94,10 @@ XParameter FFDemux::GetAPara() {
 //读取一帧数据, 数据由调用者清理
 XData FFDemux::Read() {
     ff_dmx_mutex.lock();
+    if (!av_fmt_ctx) {
+        ff_dmx_mutex.unlock();
+        return XData();
+    }
     int res = 0;
     XData d;
     AVPacket *pkt = av_packet_alloc();
@@ -103,7 +109,7 @@ XData FFDemux::Read() {
     }
     d.data = (unsigned char *) pkt;
     d.size = pkt->size;
-    d.pts = (int) (pkt->pts * 1000 * r2d(av_fmt_ctx->streams[pkt->stream_index]->time_base));
+    d.pts = (long long) (pkt->pts * 1000 * r2d(av_fmt_ctx->streams[pkt->stream_index]->time_base));
     //d.pts = pkt->pts;
     if (pkt->stream_index == videoStream) {
         //XLOGE("video time base: num: %d, den: %d, pts: %lld, real pts: %d", av_fmt_ctx->streams[pkt->stream_index]->time_base.num, av_fmt_ctx->streams[pkt->stream_index]->time_base.den, pkt->pts, d.pts);

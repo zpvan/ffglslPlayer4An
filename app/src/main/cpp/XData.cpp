@@ -34,7 +34,7 @@ void XData::Drop() {
     if (dataType == AVPACKET_TYPE)
         av_packet_free((AVPacket **) &data);
     else
-        delete data;
+        delete[] data;
     data = 0;
     size = 0;
 }

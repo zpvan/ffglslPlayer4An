@@ -104,7 +104,7 @@ SLAudioPlay::SLAudioPlay() {
 }
 
 SLAudioPlay::~SLAudioPlay() {
-    delete (buf);
+    delete[] buf;
     buf = NULL;
 }
 
@@ -117,10 +117,15 @@ void SLAudioPlay::PlayCall(void *bufq) {
     //阻塞函数
     XData d = GetData();
     if (d.size <= 0) {
-        XLOGE("GetData size %d <= 0", d.size);
         return;
     }
     if (!buf) {
+        d.Drop();
+        return;
+    }
+    if (d.size > 1024 * 1024) {
+        XLOGE("SLAudioPlay::PlayCall frame too large: %d, dropped", d.size);
+        d.Drop();
         return;
     }
     memcpy(buf, d.data, (size_t) d.size);

@@ -73,7 +73,7 @@ public:
                 EGL_NONE
         };
         context = eglCreateContext(display, config, EGL_NO_CONTEXT, ctxAttr);
-        if (config == EGL_NO_CONTEXT) {
+        if (context == EGL_NO_CONTEXT) {
             XLOGE("eglCreateContext failed");
             mux.unlock();
             return false;

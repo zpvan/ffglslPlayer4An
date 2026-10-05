@@ -25,7 +25,7 @@ void IPlayer::Main() {
             continue;
         }
         // 获取音频的pts, 告诉视频
-        int apts = audioPlay->pts;
+        long long apts = audioPlay->pts;
         //XLOGE("audio pts: %d", audioPlay->pts);
         vdecode->syncPts = apts;
         muxtex.unlock();

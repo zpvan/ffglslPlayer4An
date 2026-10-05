@@ -37,7 +37,6 @@ bool FFResample::Open(XParameter in, XParameter out) {
                                  in.para->sample_rate,
                                  0, NULL);
     int res = swr_init(swr_ctx);
-    uint8_t *pcm = new uint8_t[4800 * 4 * 2];
 
     if (res != 0) {
         XLOGE("swr_init failed!");

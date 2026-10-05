@@ -32,16 +32,16 @@ public:
     //最大的队列缓冲
     int maxList = 100;
 
-    int syncPts = 0;
+    long long syncPts = 0;
 
     bool isAudio = false;
 
-    int pts = 0;
+    long long pts = 0;
 
 protected:
     virtual void Main();
 
-    int mediaType;
+    int mediaType = -1;
     std::list<XData> pkts;
     std::mutex packetMutex;
 };
