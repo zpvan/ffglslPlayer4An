@@ -30,6 +30,10 @@ public:
     //seek 位置 pos 0.0~1.0
     virtual bool Seek(double pos);
 
+    //当前播放位置(ms)与总时长(ms)
+    long long GetPlayMs();
+    long long GetTotalMs();
+
     bool isHardDecode = true;
     XParameter outPara;
 

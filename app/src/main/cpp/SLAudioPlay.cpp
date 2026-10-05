@@ -190,6 +190,9 @@ bool SLAudioPlay::StartPlay(XParameter out) {
 
     isExit = false;
 
+    sampleRate = out.sample_rate;
+    channels = out.channels;
+
     sl_mux.lock();
     // 1
     SLresult slresult = 0;

@@ -24,9 +24,8 @@ void IPlayer::Main() {
             XSleep(2);
             continue;
         }
-        // 获取音频的pts, 告诉视频
-        long long apts = audioPlay->pts;
-        //XLOGE("audio pts: %d", audioPlay->pts);
+        // 获取音频的pts, 扣除已入队未播放的缓冲时长, 告诉视频
+        long long apts = audioPlay->pts - audioPlay->GetBufferedMs();
         vdecode->syncPts = apts;
         muxtex.unlock();
         XSleep(2);
@@ -172,6 +171,24 @@ bool IPlayer::Seek(double pos) {
         if (audioPlay)
             audioPlay->Clear();
     }
+    muxtex.unlock();
+    return ret;
+}
+
+long long IPlayer::GetPlayMs() {
+    muxtex.lock();
+    long long ret = 0;
+    if (audioPlay)
+        ret = audioPlay->pts;
+    muxtex.unlock();
+    return ret;
+}
+
+long long IPlayer::GetTotalMs() {
+    muxtex.lock();
+    long long ret = 0;
+    if (demux)
+        ret = demux->durationMs;
     muxtex.unlock();
     return ret;
 }

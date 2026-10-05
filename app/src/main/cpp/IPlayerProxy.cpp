@@ -68,3 +68,23 @@ bool IPlayerProxy::Seek(double pos) {
     mux.unlock();
     return ret;
 }
+
+long long IPlayerProxy::GetPlayMs() {
+    mux.lock();
+    long long ret = 0;
+    if (player) {
+        ret = player->GetPlayMs();
+    }
+    mux.unlock();
+    return ret;
+}
+
+long long IPlayerProxy::GetTotalMs() {
+    mux.lock();
+    long long ret = 0;
+    if (player) {
+        ret = player->GetTotalMs();
+    }
+    mux.unlock();
+    return ret;
+}

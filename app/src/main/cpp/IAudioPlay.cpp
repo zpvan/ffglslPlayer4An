@@ -18,6 +18,7 @@ void IAudioPlay::Update(XData data) {
             continue;
         }
         frames.push_back(data);
+        bufferedBytes += data.size;
         framesMutex.unlock();
         break;
     }
@@ -29,7 +30,18 @@ void IAudioPlay::Clear() {
         frames.front().Drop();
         frames.pop_front();
     }
+    bufferedBytes = 0;
     framesMutex.unlock();
+}
+
+long long IAudioPlay::GetBufferedMs() {
+    long long bytesPerSec = (long long) sampleRate * channels * 2; // S16
+    if (bytesPerSec <= 0)
+        return 0;
+    framesMutex.lock();
+    long long bytes = bufferedBytes;
+    framesMutex.unlock();
+    return bytes * 1000 / bytesPerSec;
 }
 
 XData IAudioPlay::GetData() {
@@ -39,6 +51,9 @@ XData IAudioPlay::GetData() {
         if (!frames.empty()) {
             d = frames.front();
             frames.pop_front();
+            bufferedBytes -= d.size;
+            if (bufferedBytes < 0)
+                bufferedBytes = 0;
             framesMutex.unlock();
             pts = d.pts;
             return d;

@@ -32,7 +32,14 @@ public:
 
     long long pts = 0;
 
+    //获取队列中未播放数据折算的时长(ms)
+    long long GetBufferedMs();
+
 protected:
+    //由 StartPlay 设置，用于字节数折算时长
+    int sampleRate = 44100;
+    int channels = 2;
+    long long bufferedBytes = 0;
     std::list<XData> frames;
     std::mutex framesMutex;
 };

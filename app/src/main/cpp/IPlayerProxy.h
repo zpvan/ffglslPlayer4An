@@ -29,6 +29,9 @@ public:
 
     virtual bool Seek(double pos);
 
+    long long GetPlayMs();
+    long long GetTotalMs();
+
 protected:
     IPlayerProxy() {}
 
