@@ -79,17 +79,31 @@ bool IPlayer::Open(const char *path) {
         muxtex.unlock();
         return false;
     }
-    if (!vdecode || !vdecode->Open(demux->GetVPara(), isHardDecode)) {
-        XLOGE("vdecode->Open %s failed!", path);
+    if (!vdecode) {
+        muxtex.unlock();
+        return false;
+    }
+    // 硬解失败回退软解
+    if (!vdecode->Open(demux->GetVPara(), isHardDecode)) {
+        XLOGE("vdecode->Open %s failed(hard=%d), fallback to software", path, isHardDecode);
+        if (!vdecode->Open(demux->GetVPara(), false)) {
+            XLOGE("vdecode->Open %s failed(software)", path);
+            muxtex.unlock();
+            return false;
+        }
     }
     if (!adecode || !adecode->Open(demux->GetAPara())) {
         XLOGE("adecode->Open %s failed!", path);
+        muxtex.unlock();
+        return false;
     }
 
     if (outPara.sample_rate <= 0)
         outPara = demux->GetAPara();
     if (!resample || !resample->Open(demux->GetAPara(), outPara)) {
         XLOGE("resample->Open %s failed!", path);
+        muxtex.unlock();
+        return false;
     }
     muxtex.unlock();
     return true;

@@ -25,11 +25,12 @@ void IPlayerProxy::Close() {
 
 bool IPlayerProxy::Open(const char *path) {
     mux.lock();
+    bool ret = false;
     if (player) {
-        player->Open(path);
+        ret = player->Open(path);
     }
     mux.unlock();
-    return true;
+    return ret;
 }
 
 bool IPlayerProxy::Start() {

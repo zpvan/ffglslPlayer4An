@@ -65,9 +65,14 @@ XData FFResample::Resample(XData inData) {
 
     XData out;
     AVFrame *frame = (AVFrame *) inData.data;
+    // 重采样后实际输出样本数（含采样率变换与内部缓冲延迟）
+    int outSamples = swr_get_out_samples(swr_ctx, frame->nb_samples);
+    if (outSamples <= 0) {
+        mux.unlock();
+        return XData();
+    }
     //size = 通道数 * 单通道样本数 * 样本字节大小
-    int outSize =
-            outChannels * frame->nb_samples * av_get_bytes_per_sample((AVSampleFormat) outFormat);
+    int outSize = outChannels * outSamples * av_get_bytes_per_sample((AVSampleFormat) outFormat);
     if (outSize <= 0) {
         mux.unlock();
         return XData();
@@ -75,13 +80,14 @@ XData FFResample::Resample(XData inData) {
     out.Alloc(outSize);
     uint8_t *outArr[2] = {0};
     outArr[0] = out.data;
-    int len = swr_convert(swr_ctx, outArr, frame->nb_samples, (const uint8_t **) frame->data,
+    int len = swr_convert(swr_ctx, outArr, outSamples, (const uint8_t **) frame->data,
                           frame->nb_samples);
     if (len <= 0) {
         out.Drop();
         mux.unlock();
         return XData();
     }
+    out.size = outChannels * len * av_get_bytes_per_sample((AVSampleFormat) outFormat);
     out.pts = inData.pts;
     //XLOGD("swr_convert success size: %d", len);
 

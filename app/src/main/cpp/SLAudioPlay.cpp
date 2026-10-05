@@ -137,6 +137,8 @@ void SLAudioPlay::PlayCall(void *bufq) {
 
 void SLAudioPlay::Close() {
 
+    // 先唤醒可能空转在 GetData() 的 OpenSL 回调线程
+    isExit = true;
     IAudioPlay::Clear();
 
     sl_mux.lock();
@@ -160,12 +162,21 @@ void SLAudioPlay::Close() {
     if (engineObject && (*engineObject)) {
         (*engineObject)->Destroy(engineObject);
     }
+    // 置空，支持重复 Close 与二次 StartPlay
+    audioPlayer = NULL;
+    audioPlayerItf = NULL;
+    pcmQueue = NULL;
+    outputMixObject = NULL;
+    engineObject = NULL;
+    engineItf = NULL;
     sl_mux.unlock();
 }
 
 bool SLAudioPlay::StartPlay(XParameter out) {
 
     Close();
+
+    isExit = false;
 
     sl_mux.lock();
     // 1
