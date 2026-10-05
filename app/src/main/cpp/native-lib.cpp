@@ -2,57 +2,77 @@
 #include <string>
 
 #include "android/native_window_jni.h"
-#include "XEGL.h"
-#include "XShader.h"
-#include "IVideoView.h"
-#include "GLVideoView.h"
-#include "FFResample.h"
-#include "IAudioPlay.h"
-#include "SLAudioPlay.h"
-#include "XLog.h"
-
-extern "C" {
-#include "libavcodec/jni.h"
-}
-
-static const char *MEDIA_FILE = "/mnt/sdcard/Download/valor-01-01.mp4";
-
-class TextObs : public IObserver {
-public:
-    void Update(XData data) {
-        XLOGD("TestObs Update data size: %d", data.size);
-    }
-};
 #include "IPlayerProxy.h"
 #include "FFDecode.h"
-#include "FFDemux.h"
+#include "XLog.h"
+
+static ANativeWindow *g_window = 0;
 
 extern "C"
 JNIEXPORT
 
 jint JNI_OnLoad(JavaVM *vm, void *res) {
     IPlayerProxy::Get()->Init(vm);
-    IPlayerProxy::Get()->Open(MEDIA_FILE);
-    IPlayerProxy::Get()->Start();
     return JNI_VERSION_1_4;
 }
 
 extern "C"
-JNIEXPORT jstring
-
-JNICALL
-Java_com_knox_xplay_MainActivity_stringFromJNI(
-        JNIEnv *env,
-        jobject /* this */) {
-    std::string hello = "Hello from C++";
-    return env->NewStringUTF(hello.c_str());
+JNIEXPORT jboolean JNICALL
+Java_com_knox_xplay_XPlay_native_1open(JNIEnv *env, jclass clazz, jstring path) {
+    const char *cpath = env->GetStringUTFChars(path, 0);
+    bool ret = IPlayerProxy::Get()->Open(cpath);
+    env->ReleaseStringUTFChars(path, cpath);
+    return ret ? JNI_TRUE : JNI_FALSE;
 }
 
+extern "C"
+JNIEXPORT jboolean JNICALL
+Java_com_knox_xplay_XPlay_native_1start(JNIEnv *env, jclass clazz) {
+    return IPlayerProxy::Get()->Start() ? JNI_TRUE : JNI_FALSE;
+}
 
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_knox_xplay_XPlay_native_1setPause(JNIEnv *env, jclass clazz, jboolean pause) {
+    IPlayerProxy::Get()->SetPause(pause == JNI_TRUE);
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_knox_xplay_XPlay_native_1seek(JNIEnv *env, jclass clazz, jdouble pos) {
+    IPlayerProxy::Get()->Seek(pos);
+}
+
+extern "C"
+JNIEXPORT jlongArray JNICALL
+Java_com_knox_xplay_XPlay_native_1getProgress(JNIEnv *env, jclass clazz) {
+    jlongArray result = env->NewLongArray(2);
+    if (!result)
+        return 0;
+    jlong vals[2];
+    vals[0] = IPlayerProxy::Get()->GetPlayMs();
+    vals[1] = IPlayerProxy::Get()->GetTotalMs();
+    env->SetLongArrayRegion(result, 0, 2, vals);
+    return result;
+}
 
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_knox_xplay_XPlay_native_1initView(JNIEnv *env, jobject instance, jobject surface) {
-    ANativeWindow *nwin = ANativeWindow_fromSurface(env, surface);
-    IPlayerProxy::Get()->InitView(nwin);
+    if (g_window) {
+        ANativeWindow_release(g_window);
+        g_window = 0;
+    }
+    g_window = ANativeWindow_fromSurface(env, surface);
+    IPlayerProxy::Get()->InitView(g_window);
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_knox_xplay_XPlay_native_1closeView(JNIEnv *env, jobject instance) {
+    IPlayerProxy::Get()->Close();
+    if (g_window) {
+        ANativeWindow_release(g_window);
+        g_window = 0;
+    }
 }

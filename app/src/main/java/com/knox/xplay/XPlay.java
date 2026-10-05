@@ -1,20 +1,17 @@
 package com.knox.xplay;
 
 import android.content.Context;
-import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-
 /**
  * Created by nireus on 2018/5/6.
+ * EGL 完全由 native 层持有，这里只用纯 SurfaceView，避免 GLSurfaceView 与 native 双 EGL surface 冲突。
  */
 
-public class XPlay extends GLSurfaceView implements SurfaceHolder.Callback, GLSurfaceView.Renderer {
+public class XPlay extends SurfaceView implements SurfaceHolder.Callback {
 
     private static final String TAG = "XPlay";
 
@@ -24,12 +21,22 @@ public class XPlay extends GLSurfaceView implements SurfaceHolder.Callback, GLSu
 
     public XPlay(Context context, AttributeSet attrs) {
         super(context, attrs);
-
         getHolder().addCallback(this);
-        setRenderer(this);
     }
 
+    public static native boolean native_open(String path);
+
+    public static native boolean native_start();
+
+    public static native void native_setPause(boolean pause);
+
+    public static native void native_seek(double pos);
+
+    public static native long[] native_getProgress();
+
     private native void native_initView(Object surface);
+
+    private native void native_closeView();
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -41,26 +48,11 @@ public class XPlay extends GLSurfaceView implements SurfaceHolder.Callback, GLSu
     public void surfaceChanged(SurfaceHolder holder, int format, int width,
                                int height) {
         Log.e(TAG, "surfaceChanged, holder: " + holder);
-
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         Log.e(TAG, "surfaceDestroyed, holder: " + holder);
-    }
-
-    @Override
-    public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        Log.e(TAG, "onSurfaceCreated: ");
-    }
-
-    @Override
-    public void onSurfaceChanged(GL10 gl, int width, int height) {
-        Log.e(TAG, "onSurfaceChanged: ");
-    }
-
-    @Override
-    public void onDrawFrame(GL10 gl) {
-        Log.e(TAG, "onDrawFrame: ");
+        native_closeView();
     }
 }
