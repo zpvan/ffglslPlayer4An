@@ -32,6 +32,15 @@ void FFDecode::Close() {
     mux.unlock();
 }
 
+void FFDecode::Clear() {
+    IDecode::Clear();
+    mux.lock();
+    if (av_cdc_ctx) {
+        avcodec_flush_buffers(av_cdc_ctx);
+    }
+    mux.unlock();
+}
+
 bool FFDecode::Open(XParameter para, bool isHard) {
 
     Close();

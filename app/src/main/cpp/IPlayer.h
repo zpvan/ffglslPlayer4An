@@ -27,6 +27,9 @@ public:
     //暂停/继续
     virtual void SetPause(bool isPause);
 
+    //seek 位置 pos 0.0~1.0
+    virtual bool Seek(double pos);
+
     bool isHardDecode = true;
     XParameter outPara;
 

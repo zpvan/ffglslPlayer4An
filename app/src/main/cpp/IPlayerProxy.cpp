@@ -58,3 +58,13 @@ void IPlayerProxy::SetPause(bool isPause) {
     }
     mux.unlock();
 }
+
+bool IPlayerProxy::Seek(double pos) {
+    mux.lock();
+    bool ret = false;
+    if (player) {
+        ret = player->Seek(pos);
+    }
+    mux.unlock();
+    return ret;
+}

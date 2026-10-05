@@ -18,6 +18,9 @@ public:
     virtual bool Open(XParameter para, bool isHard = false);
     virtual void Close();
 
+    //清理缓冲队列并 flush 解码器内部缓冲
+    virtual void Clear();
+
     FFDecode();
 
     //Future模型, 发送数据到线程解码

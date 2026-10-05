@@ -135,3 +135,22 @@ FFDemux::FFDemux()
     av_register_all();
     avformat_network_init();
 }
+
+//seek 位置 pos 0.0~1.0
+bool FFDemux::Seek(double pos) {
+    ff_dmx_mutex.lock();
+    if (!av_fmt_ctx) {
+        ff_dmx_mutex.unlock();
+        return false;
+    }
+    // av_fmt_ctx->duration 单位为 AV_TIME_BASE
+    int64_t target = (int64_t) (pos * av_fmt_ctx->duration);
+    int res = av_seek_frame(av_fmt_ctx, -1, target, AVSEEK_FLAG_BACKWARD);
+    ff_dmx_mutex.unlock();
+    if (res < 0) {
+        XLOGE("FFDemux::Seek %f failed", pos);
+        return false;
+    }
+    XLOGD("FFDemux::Seek %f success", pos);
+    return true;
+}

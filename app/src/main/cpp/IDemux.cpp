@@ -15,9 +15,9 @@ void IDemux::Main() {
         XData d = Read();
         //XLOGD("IDemux Read %d", d.size);
         if (d.size <= 0) {
-            XLOGD("IDemux End of Stream");
-            isExit = true;
-            break;
+            // EOF 或读取失败：空转等待 Seek，由 Close 的 isExit 终止线程
+            XSleep(2);
+            continue;
         }
         Notify(d);
     }

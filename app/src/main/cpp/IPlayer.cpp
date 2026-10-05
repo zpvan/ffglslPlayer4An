@@ -156,3 +156,22 @@ void IPlayer::SetPause(bool isPause) {
         audioPlay->SetPause(isPause);
     muxtex.unlock();
 }
+
+bool IPlayer::Seek(double pos) {
+    bool ret = false;
+    muxtex.lock();
+    if (demux) {
+        // 先 seek 数据源，再清空各级缓冲，避免旧数据进入新位置
+        ret = demux->Seek(pos);
+    }
+    if (ret) {
+        if (vdecode)
+            vdecode->Clear();
+        if (adecode)
+            adecode->Clear();
+        if (audioPlay)
+            audioPlay->Clear();
+    }
+    muxtex.unlock();
+    return ret;
+}

@@ -27,6 +27,8 @@ public:
 
     virtual void SetPause(bool isPause);
 
+    virtual bool Seek(double pos);
+
 protected:
     IPlayerProxy() {}
 
