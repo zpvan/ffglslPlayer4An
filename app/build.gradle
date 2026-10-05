@@ -1,14 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    namespace 'com.knox.xplay'
+    compileSdk 35
+    ndkVersion '29.0.14206865'
+
     defaultConfig {
         applicationId "com.knox.xplay"
-        minSdkVersion 21
-        targetSdkVersion 26
+        minSdk 21
+        targetSdk 35
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
                 cppFlags "-std=c++11"
@@ -19,7 +21,7 @@ android {
         }
         sourceSets {
             main {
-                jniLibs.srcDirs=['libs']
+                jniLibs.srcDirs = ['libs']
             }
         }
     }
@@ -29,18 +31,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
     externalNativeBuild {
         cmake {
-            path "CMakeLists.txt"
+            path file('CMakeLists.txt')
+            version '3.22.1'
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.0.0-beta1'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:0.5'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    testImplementation 'junit:junit:4.13.2'
 }
