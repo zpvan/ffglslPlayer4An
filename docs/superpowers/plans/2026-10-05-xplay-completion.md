@@ -1480,3 +1480,9 @@ git tag -a v1.0-xplay-complete -m "修 bug + Seek/暂停/进度UI/SAF 文件选�
 - **Spec 覆盖**：设计文档第 1 部分（bug 修复）→ Task 2/3/4；第 2 部分（暂停/同步/Seek/进度）→ Task 5/6/7；第 3 部分（SurfaceView、SAF、UI、JNI、仓库卫生）→ Task 1/8/9/10；第 4 部分（验证）→ Task 11。全覆盖。
 - **类型一致性**：`SetPause(bool)`（XThread/IPlayer/IPlayerProxy/IAudioPlay/SLAudioPlay）、`Seek(double)`（IDemux/FFDemux/IPlayer/IPlayerProxy）、`GetPlayMs()/GetTotalMs()/GetBufferedMs()` 返回 `long long`、JNI 层 `native_setPause(boolean)`/`native_seek(double)`/`native_getProgress()→long[]`，前后一致。
 - **已知取舍**：Task 9 Step 2 中 MainActivity 旧代码可能暂时引用 `stringFromJNI`，允许临时注释，Task 10 重写后解决。
+
+## 执行记录（2026-10-05 完成）
+
+- **新增前置任务（用户指示）**：构建工具链现代化 —— 本机无 JDK/Android SDK 默认安装，按用户要求使用 OpenJDK 17（`/opt/homebrew/opt/openjdk@17`）+ cmdline-tools（`/opt/homebrew/share/android-commandlinetools`）+ compileSdk 35，参照 BabyPluginFramework 配置迁移到 Gradle 8.11.1 + AGP 8.9.1 + AndroidX，并修复了 `gradle-wrapper.properties` 中遗留的 git 合并冲突标记。commit `902a39c`。
+- Task 1～10 全部完成，每个任务（或相邻任务组合）均以 `./gradlew assembleDebug` BUILD SUCCESSFUL 为验证门，逐个提交（`4a92dc3` ~ `a2aafb9`）。
+- Task 11 真机验收：本机无连接设备，待用户在真机/模拟器上执行 checklist 后打 tag。
