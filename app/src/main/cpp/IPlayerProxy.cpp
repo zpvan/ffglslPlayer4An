@@ -50,3 +50,11 @@ bool IPlayerProxy::InitView(void *win) {
     mux.unlock();
     return true;
 }
+
+void IPlayerProxy::SetPause(bool isPause) {
+    mux.lock();
+    if (player) {
+        player->SetPause(isPause);
+    }
+    mux.unlock();
+}

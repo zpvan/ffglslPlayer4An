@@ -42,3 +42,8 @@ void XThread::Stop() {
     }
     XLOGD("Stop 停止线程超时");
 }
+
+//暂停/继续
+void XThread::SetPause(bool isPause) {
+    this->isPause = isPause;
+}

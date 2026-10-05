@@ -142,3 +142,17 @@ bool IPlayer::InitView(void *win) {
 
     return true;
 }
+
+void IPlayer::SetPause(bool isPause) {
+    muxtex.lock();
+    XThread::SetPause(isPause);
+    if (demux)
+        demux->SetPause(isPause);
+    if (vdecode)
+        vdecode->SetPause(isPause);
+    if (adecode)
+        adecode->SetPause(isPause);
+    if (audioPlay)
+        audioPlay->SetPause(isPause);
+    muxtex.unlock();
+}

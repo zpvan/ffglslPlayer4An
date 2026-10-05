@@ -135,6 +135,18 @@ void SLAudioPlay::PlayCall(void *bufq) {
     sl_mux.unlock();
 }
 
+void SLAudioPlay::SetPause(bool isPause) {
+    sl_mux.lock();
+    if (audioPlayerItf && (*audioPlayerItf)) {
+        if (isPause) {
+            (*audioPlayerItf)->SetPlayState(audioPlayerItf, SL_PLAYSTATE_PAUSED);
+        } else {
+            (*audioPlayerItf)->SetPlayState(audioPlayerItf, SL_PLAYSTATE_PLAYING);
+        }
+    }
+    sl_mux.unlock();
+}
+
 void SLAudioPlay::Close() {
 
     // 先唤醒可能空转在 GetData() 的 OpenSL 回调线程

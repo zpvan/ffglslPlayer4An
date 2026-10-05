@@ -17,6 +17,9 @@ public:
 
     virtual bool StartPlay(XParameter out) = 0;
 
+    //暂停/继续（子类实现具体播放器的暂停）
+    virtual void SetPause(bool isPause) {}
+
     //获取缓冲数据, 如没有则阻塞
     virtual XData GetData();
 

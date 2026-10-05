@@ -8,6 +8,10 @@
 void IDemux::Main() {
     XLOGD("idmx-thread");
     while (!isExit) {
+        if (isPause) {
+            XSleep(2);
+            continue;
+        }
         XData d = Read();
         //XLOGD("IDemux Read %d", d.size);
         if (d.size <= 0) {

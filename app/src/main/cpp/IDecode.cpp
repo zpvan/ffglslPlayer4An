@@ -28,6 +28,10 @@ void IDecode::Update(XData pkt) {
 void IDecode::Main() {
     XLOGD("idec-thread");
     while (!isExit) {
+        if (isPause) {
+            XSleep(2);
+            continue;
+        }
         packetMutex.lock();
 
         //判断音视频同步

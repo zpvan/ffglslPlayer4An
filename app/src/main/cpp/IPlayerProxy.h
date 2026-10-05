@@ -25,6 +25,8 @@ public:
 
     virtual bool InitView(void *win);
 
+    virtual void SetPause(bool isPause);
+
 protected:
     IPlayerProxy() {}
 

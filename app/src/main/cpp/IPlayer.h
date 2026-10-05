@@ -24,6 +24,9 @@ public:
     virtual bool Start();
     virtual bool InitView(void *win);
 
+    //暂停/继续
+    virtual void SetPause(bool isPause);
+
     bool isHardDecode = true;
     XParameter outPara;
 

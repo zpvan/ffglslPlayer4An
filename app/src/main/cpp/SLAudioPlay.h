@@ -11,6 +11,7 @@
 class SLAudioPlay : public IAudioPlay {
 public:
     virtual bool StartPlay(XParameter out);
+    virtual void SetPause(bool isPause);
     void PlayCall(void *bufq);
     virtual void Close();
 
